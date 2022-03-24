@@ -1,0 +1,11 @@
+### MicrosoftOffice ###
+*.tmp
+
+# Word temporary
+~$*.doc*
+
+# Word Auto Backup File
+Backup of *.doc*
+
+# PowerPoint temporary
+~$*.ppt*
