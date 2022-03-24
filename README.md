@@ -1,4 +1,4 @@
-# Gra_Wisielec
+# Gra_Wisielec 
 ### Grupa: Kątprosty
 > Adrianna Woźniak, Dorota Mockiewicz, Oliwia Paliwoda, Kacper Kotko
 ## Harmonogram
