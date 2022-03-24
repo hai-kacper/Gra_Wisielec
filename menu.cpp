@@ -1,7 +1,5 @@
-#include <iostream>
 
-using namespace std;
-
+#include "wszystko.h"
 void menu()
 {
     system("cls");
@@ -16,6 +14,8 @@ void menu()
     {
     case 1:
         cout << "Tu zacznie sie gra, kiedy napiszemy kod" << endl;
+   //
+    losowanie();
         break;
 
     case 2:
