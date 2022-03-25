@@ -86,7 +86,7 @@ int main()
     cout << "Kategoria: " << kategoria << endl;
     cout << "Haslo: " << haslo << endl;
     
-	//to powinno robic nowego stringa, o dlugosci hasla ale z X'ow
+	//to powinno robic nowego stringa, o dlugosci hasla ale z X'ow(szyfrowanie)
     //cos z pobieraniem hasla z pliku nie dziala
 	string hide_h(haslo.length(),'X');
  	cout<<hide_h;
