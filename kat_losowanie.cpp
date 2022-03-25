@@ -95,17 +95,17 @@ int losowanie()
 	{
         char znak;
 		cout << "\n\n\t\t\t\t" << hide_m;
-		cout << "\n\n\t\t\t\tGuess a letter: ";
+		cout << "\n\n\t\t\t\tzgadnij litere: ";
 		cin >> znak;
 		
 		if (checkGuess(znak, haslo, hide_m)==0)
 		{
-		    cout<< "Incorrect letter."<<endl;;
+		    cout<< "zla litera"<<endl;;
 			l_prob -= 1;
 		}
 		else
 		{
-			cout<<"NICE! You guess a letter"<<endl;;
+			cout<<"dobra litera"<<endl;;
 		}
  
  
