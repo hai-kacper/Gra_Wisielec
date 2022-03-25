@@ -1,7 +1,7 @@
 
 #include "wszystko.h"
 #define HS 20
-
+int l_prob=3; //narazie na 3 ustawilem bo se testuje, liczba prob i nom
 int losowanie()
 {
     srand(time(NULL));
@@ -66,6 +66,61 @@ int losowanie()
 
     cout << "Kategoria: " << kategoria << endl;
     cout << "Haslo: " << haslo << endl;
+    
+	
+	string hide_m(haslo.length(),'X');
+ 
+	
+    int checkGuess (char zgad_litera, string ukryte_haslo, string &zgadywane_haslo)
+    {
+	int i;
+	int matches=0;
+	int len=secretmonth.length();
+	for (i = 0; i< len; i++)
+	{
+		
+		if (zgad_litera == zgadywane_haslo[i])
+			return 0;
+		
+		if (zgad_litera == ukryte_haslo[i])
+		{
+			zgadywane_haslo[i] = guess;
+			matches++;
+		}
+	}
+	return matches;
+    }
+	
+	while (l_prob!=0)
+	{
+        char znak;
+		cout << "\n\n\t\t\t\t" << hide_m;
+		cout << "\n\n\t\t\t\tGuess a letter: ";
+		cin >> znak;
+		
+		if (checkGuess(znak, haslo, hide_m)==0)
+		{
+		    cout<< "Incorrect letter."<<endl;;
+			l_prob -= 1;
+		}
+		else
+		{
+			cout<<"NICE! You guess a letter"<<endl;;
+		}
+ 
+ 
+		
+		if (haslo==hide_m)
+		{
+			 cout<< "zgadles haslo!";
+			cout << "\n haslo : " << haslo << endl;
+		}
+	}
+	if(l_prob == 0)
+	{
+		cout << "powiesili cie, sadge">>endl;
+		cout << "\nhaslo : " << haslo << endl;
+	}
 
     return 0;
 }
