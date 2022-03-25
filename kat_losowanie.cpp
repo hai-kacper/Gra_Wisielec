@@ -2,7 +2,26 @@
 #include "wszystko.h"
 #define HS 20
 int l_prob=3; //narazie na 3 ustawilem bo se testuje, liczba prob i nom
-int losowanie()
+int checkGuess (char zgad_litera, string ukryte_haslo, string &zgadywane_haslo)
+    {
+	int i;
+	int matches=0;
+	int len=ukryte_haslo.length();
+	for (i = 0; i< len; i++)
+	{
+		
+		if (zgad_litera == zgadywane_haslo[i])
+			return 0;
+		
+		if (zgad_litera == ukryte_haslo[i])
+		{
+			zgadywane_haslo[i] = zgad_litera;
+			matches++;
+		}
+	}
+	return matches;
+    }
+int main()
 {
     srand(time(NULL));
     int rand_plik = rand() % 8 + 1;
@@ -53,7 +72,7 @@ int losowanie()
         return 1;
     }
 
-    ifstream plik;
+    fstream plik;
     plik.open(nazwa_pliku);
     string hasla[HS];
     for (int i = 0; i < HS; i++)
@@ -67,38 +86,18 @@ int losowanie()
     cout << "Kategoria: " << kategoria << endl;
     cout << "Haslo: " << haslo << endl;
     
-	
-	string hide_m(haslo.length(),'X');
- 
-	
-    int checkGuess (char zgad_litera, string ukryte_haslo, string &zgadywane_haslo)
-    {
-	int i;
-	int matches=0;
-	int len=secretmonth.length();
-	for (i = 0; i< len; i++)
-	{
-		
-		if (zgad_litera == zgadywane_haslo[i])
-			return 0;
-		
-		if (zgad_litera == ukryte_haslo[i])
-		{
-			zgadywane_haslo[i] = guess;
-			matches++;
-		}
-	}
-	return matches;
-    }
-	
+	//to powinno robic nowego stringa, o dlugosci hasla ale z X'ow
+    //cos z pobieraniem hasla z pliku nie dziala
+	string hide_h(haslo.length(),'X');
+ 	cout<<hide_h;
 	while (l_prob!=0)
 	{
         char znak;
-		cout << "\n\n\t\t\t\t" << hide_m;
-		cout << "\n\n\t\t\t\tzgadnij litere: ";
+		cout <<hide_h;
+		cout << "\nzgadnij litere: ";
 		cin >> znak;
 		
-		if (checkGuess(znak, haslo, hide_m)==0)
+		if (checkGuess(znak, haslo, hide_h)==0)
 		{
 		    cout<< "zla litera"<<endl;;
 			l_prob -= 1;
@@ -110,16 +109,17 @@ int losowanie()
  
  
 		
-		if (haslo==hide_m)
+	/*	if (haslo==hide_h)
 		{
 			 cout<< "zgadles haslo!";
 			cout << "\n haslo : " << haslo << endl;
-		}
+            exit;
+		}*/
 	}
 	if(l_prob == 0)
 	{
-		cout << "powiesili cie, sadge">>endl;
-		cout << "\nhaslo : " << haslo << endl;
+		cout << "powiesili cie, sadge"<<endl;
+		cout << "haslo : " << haslo << endl;
 	}
 
     return 0;
