@@ -91,10 +91,23 @@ int kat_losowanie()
 	//tworzenie nowego stringa o długości hasła wypełnionego '_'
 	string hide_h(haslo.length(),'_');
 
+    char alfabet [26];
+    for (int i = 0; i <=25; i++) {
+        alfabet[i] = i + 65;
+    }
 	while (l_prob!=0)
 	{
+        cout << "\nPozostale litery"<< endl;
+        for (int i = 0; i < 26; ++i) {
+            if (alfabet[i] != ' ')
+            {
+                cout << alfabet[i] << ", ";
+            }
+
+        }
+
         char znak;
-		cout <<hide_h;
+		cout <<"\n\n" << hide_h;
 		cout << "\nzgadnij litere: ";
 		cin >> znak;
 
@@ -116,6 +129,14 @@ int kat_losowanie()
 		{
 			cout<<"dobra litera"<<endl;
 		}
+
+        for (int i = 0; i < 26; ++i) {
+            if (alfabet[i] == znak)
+            {
+                alfabet[i] = ' ';
+            }
+
+        }
  
  
 		
