@@ -89,7 +89,7 @@ int kat_losowanie()
 	//to powinno robic nowego stringa, o dlugosci hasla ale z X'ow(szyfrowanie)
     //cos z pobieraniem hasla z pliku nie dziala
 	string hide_h(haslo.length(),'X');
- 	cout<<hide_h;
+
 	while (l_prob!=0)
 	{
         char znak;
