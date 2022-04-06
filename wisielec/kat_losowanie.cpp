@@ -1,7 +1,7 @@
 
 #include "wszystko.h"
 #define HS 20
-int l_prob=3; //narazie na 3 ustawilem bo se testuje, liczba prob i nom
+int l_prob=3; //narazie na 3 ustawilem bo se testuje
 int checkGuess (char zgad_litera, string ukryte_haslo, string &zgadywane_haslo)
     {
 	int i;
@@ -23,6 +23,7 @@ int checkGuess (char zgad_litera, string ukryte_haslo, string &zgadywane_haslo)
     }
 int kat_losowanie()
 {
+    l_prob = 3;
     srand(time(NULL));
     int rand_plik = rand() % 8 + 1;
     string kategoria, nazwa_pliku;
@@ -80,14 +81,14 @@ int kat_losowanie()
         plik >> hasla[i];
     }
 
+
     int rand_haslo = rand() % HS;
     string haslo = hasla[rand_haslo];
 
     cout << "Kategoria: " << kategoria << endl;
     cout << "Haslo: " << haslo << endl;
     
-	//to powinno robic nowego stringa, o dlugosci hasla ale z X'ow(szyfrowanie)
-    //cos z pobieraniem hasla z pliku nie dziala
+	//tworzenie nowego stringa o długości hasła wypełnionego '_'
 	string hide_h(haslo.length(),'_');
 
 	while (l_prob!=0)
@@ -118,18 +119,27 @@ int kat_losowanie()
  
  
 		
-	/*	if (haslo==hide_h)
+		if (haslo==hide_h)
 		{
-			 cout<< "zgadles haslo!";
+            cout<< "zgadles haslo!";
 			cout << "\n haslo : " << haslo << endl;
-            exit;
-		}*/
+            break;
+		}
 	}
 	if(l_prob == 0)
 	{
-		cout << "GAME OVER"<<endl;
+		cout << "Nie zgadles hasla"<<endl;
 		cout << "haslo : " << haslo << endl;
 	}
+
+
+    cout << "Czy chcesz zagrac jeszcze raz? [t/n]" << endl;
+    char odp;
+    cin >> odp;
+    if(odp == 't' || odp == 'T')
+    {
+        kat_losowanie();
+    }
 
     return 0;
 }
