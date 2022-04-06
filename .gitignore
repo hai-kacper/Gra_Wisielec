@@ -1,11 +1,11 @@
-### MicrosoftOffice ###
+### inne pliki office'a ###
 *.tmp
 
-# Word temporary
+# pliki worda
 ~$*.doc*
 
-# Word Auto Backup File
+# backupy worda
 Backup of *.doc*
 
-# PowerPoint temporary
+# prezentacje powerpointowe
 ~$*.ppt*
