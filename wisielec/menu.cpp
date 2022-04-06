@@ -13,7 +13,7 @@ void menu()
     switch (wybor)
     {
     case 1:
-        cout << "Tu zacznie sie gra, kiedy napiszemy kod" << endl;
+        cout << "Start gry" << endl;
    //
     kat_losowanie();
         break;

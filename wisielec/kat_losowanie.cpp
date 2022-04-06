@@ -88,7 +88,7 @@ int kat_losowanie()
     
 	//to powinno robic nowego stringa, o dlugosci hasla ale z X'ow(szyfrowanie)
     //cos z pobieraniem hasla z pliku nie dziala
-	string hide_h(haslo.length(),'X');
+	string hide_h(haslo.length(),'_');
 
 	while (l_prob!=0)
 	{
@@ -118,7 +118,7 @@ int kat_losowanie()
 	}
 	if(l_prob == 0)
 	{
-		cout << "powiesili cie, sadge"<<endl;
+		cout << "GAME OVER"<<endl;
 		cout << "haslo : " << haslo << endl;
 	}
 
