@@ -96,15 +96,24 @@ int kat_losowanie()
 		cout <<hide_h;
 		cout << "\nzgadnij litere: ";
 		cin >> znak;
+
+        while (znak > 122 || znak < 65 || znak > 91 && znak < 96) {
+            cout << "Niepoprany znak, to nie jest litera\nWprowadz jeszcze raz" << endl;
+            cin >> znak;
+        }
+
+        if (znak >= 96) {
+            znak -= 32;
+        }
 		
 		if (checkGuess(znak, haslo, hide_h)==0)
 		{
-		    cout<< "zla litera"<<endl;;
+		    cout<< "zla litera"<<endl;
 			l_prob -= 1;
 		}
 		else
 		{
-			cout<<"dobra litera"<<endl;;
+			cout<<"dobra litera"<<endl;
 		}
  
  
