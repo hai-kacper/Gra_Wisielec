@@ -10,6 +10,6 @@
 using namespace std;
 
 void menu();
-int losowanie();
+int kat_losowanie();
 
 #endif //GRA_WISIELEC_MENU_H

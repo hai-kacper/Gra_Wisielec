@@ -21,7 +21,7 @@ int checkGuess (char zgad_litera, string ukryte_haslo, string &zgadywane_haslo)
 	}
 	return matches;
     }
-int main()
+int kat_losowanie()
 {
     srand(time(NULL));
     int rand_plik = rand() % 8 + 1;
