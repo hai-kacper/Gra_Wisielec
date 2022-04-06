@@ -40,7 +40,7 @@ void menu()
     case 3:
 system("cls");
 cout<<"INSTRUKCJA"<<endl;
-cout<<"\nTresc instrukcji"<<endl;
+cout<<"\nGra Wisielec polega na odgadnieciu hasla na podstawie wylosowanej kategorii. Wyswietlona jest liczba liter danego hasla w postaci pustych miejsc. By wygrac, nalezy podac wszystkie litery danego hasla przed wyczerpaniem dozwolonej liczby bledow. Po podaniu 10 nieprawidlowych liter uzytkownik przegrywa. Przy kazdej blednej probie rysowana jest kolejna czesc wisielca. Wszystkie uzyte litery zostana wyswietlone w odpowiednim miejscu. Po wprowadzeniu uzytej juz wczesniej litery zostanie wyswietlony o tym komunikat, nie jest to zaliczane jako blad."<<endl;
 cout<<"\nWcisnij ENTER aby wrocic do menu \n";
 getchar();
 if (getchar()=='\n')
