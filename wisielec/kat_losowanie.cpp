@@ -23,6 +23,8 @@ int checkGuess (char zgad_litera, string ukryte_haslo, string &zgadywane_haslo)
 int kat_losowanie()
 {
     int l_prob = 10;
+
+    //losowanie kategorii
     srand(time(NULL));
     int rand_plik = rand() % 8 + 1;
     string kategoria, nazwa_pliku;
@@ -72,6 +74,7 @@ int kat_losowanie()
         return 1;
     }
 
+    //wczytanie haseł z pliku
     fstream plik;
     plik.open(nazwa_pliku);
     string hasla[HS];
@@ -82,6 +85,7 @@ int kat_losowanie()
     plik.close();
 
 
+    //wczytanie kolejnych etapów wisielca
     plik.open("rysowanie_wisielca.txt",ios::in);
     string wisielec[50];
     for (int i = 0; i < 50; i++)
@@ -90,6 +94,7 @@ int kat_losowanie()
     }
     plik.close();
 
+    //losowaie hasła
     int rand_haslo = rand() % HS;
     string haslo = hasla[rand_haslo];
 
@@ -99,15 +104,19 @@ int kat_losowanie()
 	//tworzenie nowego stringa o długości hasła wypełnionego '_'
 	string hide_h(haslo.length(),'_');
 
+    //stworzenie tabeli dostępnych liter
     char alfabet [26];
     for (int i = 0; i <=25; i++) {
         alfabet[i] = i + 65;
     }
+
 	while (l_prob!=0)
 	{
         cout << "Kategoria: " << kategoria << endl;
         cout << "Haslo: " << haslo << endl;
 
+
+        //wyświetlenie dostępnych liter
         cout << "\nPozostale litery"<< endl;
         for (int i = 0; i < 26; ++i) {
             if (alfabet[i] != ' ')
@@ -117,25 +126,29 @@ int kat_losowanie()
 
         }
 
-        char znak;
-
+        //wyświetlenie zgadywanego hasła
         cout << '\n';
         for (int i = 0; i < hide_h.length(); ++i) {
             cout << hide_h[i] << ' ';
         }
 
+        //wczytanie litery
+        char znak;
 		cout << "\nzgadnij litere: ";
 		cin >> znak;
 
+        //sprawdzanie czy użytkownik wprowadził liczbę
         while (znak > 122 || znak < 65 || znak > 91 && znak < 96) {
             cout << "Niepoprany znak, to nie jest litera\nWprowadz jeszcze raz" << endl;
             cin >> znak;
         }
 
+        //zamiana małych liter na duże
         if (znak >= 96) {
             znak -= 32;
         }
-		
+
+        //funkcja sprawdzająca czy wprowadzona litera znajduje się w haśle
 		if (checkGuess(znak, haslo, hide_h)==0)
 		{
 		    cout<< "zla litera"<<endl;
@@ -146,6 +159,7 @@ int kat_losowanie()
 			cout<<"dobra litera"<<endl;
 		}
 
+        //usunięcię wykorzystanych liter z dostępnych liter
         for (int i = 0; i < 26; ++i) {
             if (alfabet[i] == znak)
             {
@@ -154,6 +168,7 @@ int kat_losowanie()
 
         }
 
+        //wyświetlenie wisielca
         if(l_prob < 10)
         {
             for (int i = 0; i < 5; i++)
@@ -163,8 +178,7 @@ int kat_losowanie()
         }
 
  
- 
-		
+        //sprawdzenie czy użytkownik zgadł hasło
 		if (haslo==hide_h)
 		{
             cout<< "zgadles haslo!";
