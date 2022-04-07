@@ -1,7 +1,6 @@
 
 #include "wszystko.h"
 #define HS 20
-int l_prob=3; //narazie na 3 ustawilem bo se testuje
 int checkGuess (char zgad_litera, string ukryte_haslo, string &zgadywane_haslo)
     {
 	int i;
@@ -23,7 +22,7 @@ int checkGuess (char zgad_litera, string ukryte_haslo, string &zgadywane_haslo)
     }
 int kat_losowanie()
 {
-    l_prob = 3;
+    int l_prob = 10;
     srand(time(NULL));
     int rand_plik = rand() % 8 + 1;
     string kategoria, nazwa_pliku;
@@ -80,13 +79,22 @@ int kat_losowanie()
     {
         plik >> hasla[i];
     }
+    plik.close();
 
+
+    plik.open("rysowanie_wisielca.txt",ios::in);
+    string wisielec[50];
+    for (int i = 0; i < 50; i++)
+    {
+        getline(plik,wisielec[i]);
+    }
+    plik.close();
 
     int rand_haslo = rand() % HS;
     string haslo = hasla[rand_haslo];
 
-    cout << "Kategoria: " << kategoria << endl;
-    cout << "Haslo: " << haslo << endl;
+    //cout << "Kategoria: " << kategoria << endl;
+    //cout << "Haslo: " << haslo << endl;
     
 	//tworzenie nowego stringa o długości hasła wypełnionego '_'
 	string hide_h(haslo.length(),'_');
@@ -97,6 +105,9 @@ int kat_losowanie()
     }
 	while (l_prob!=0)
 	{
+        cout << "Kategoria: " << kategoria << endl;
+        cout << "Haslo: " << haslo << endl;
+
         cout << "\nPozostale litery"<< endl;
         for (int i = 0; i < 26; ++i) {
             if (alfabet[i] != ' ')
@@ -142,6 +153,15 @@ int kat_losowanie()
             }
 
         }
+
+        if(l_prob < 10)
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                cout << wisielec[(10 - l_prob -1)*5 + i]<< endl;
+            }
+        }
+
  
  
 		
