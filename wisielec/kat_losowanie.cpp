@@ -107,7 +107,12 @@ int kat_losowanie()
         }
 
         char znak;
-		cout <<"\n\n" << hide_h;
+
+        cout << '\n';
+        for (int i = 0; i < hide_h.length(); ++i) {
+            cout << hide_h[i] << ' ';
+        }
+
 		cout << "\nzgadnij litere: ";
 		cin >> znak;
 
