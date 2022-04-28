@@ -3,8 +3,11 @@
 #define HS 20
 string wisielec[50];
 char alfabet [26];
+char znak;
 void dostepne_litery (void);
 void wczytanie_wisielca (void);
+void czy_znak_jest_litera (char);
+void dostepne_litery_aktualizacja(void);
 int checkGuess (char zgad_litera, string ukryte_haslo, string &zgadywane_haslo)
     {
 	int i;
@@ -126,15 +129,12 @@ int kat_losowanie()
         }
 
         //wczytanie litery
-        char znak;
-		cout << "\nzgadnij litere: ";
+        cout << "\nzgadnij litere: ";
 		cin >> znak;
 
-        //sprawdzanie czy użytkownik wprowadził liczbę
-        while (znak > 122 || znak < 65 || znak > 91 && znak < 96) {
-            cout << "Niepoprany znak, to nie jest litera\nWprowadz jeszcze raz" << endl;
-            cin >> znak;
-        }
+        //sprawdzanie czy użytkownik wprowadził litera
+        czy_znak_jest_litera(znak);
+
 
         //zamiana małych liter na duże
         if (znak >= 96) {
@@ -153,13 +153,7 @@ int kat_losowanie()
 		}
 
         //usunięcię wykorzystanych liter z dostępnych liter
-        for (int i = 0; i < 26; ++i) {
-            if (alfabet[i] == znak)
-            {
-                alfabet[i] = ' ';
-            }
-
-        }
+        dostepne_litery_aktualizacja();
 
         //wyświetlenie wisielca
         if(l_prob < 10)
@@ -197,6 +191,8 @@ int kat_losowanie()
     return 0;
 }
 
+
+
 void wczytanie_wisielca (void){
     fstream plik;
     plik.open("rysowanie_wisielca.txt", ios::in);
@@ -211,5 +207,23 @@ void dostepne_litery (void) {
     ;
     for (int i = 0; i <=25; i++) {
         alfabet[i] = i + 65;
+    }
+}
+
+
+void czy_znak_jest_litera (char znak1) {
+    if (znak1 > 122 || znak1 < 65 || znak1 > 91 && znak1 < 96) {
+        cout << "Niepoprany znak, to nie jest litera\nWprowadz jeszcze raz" << endl;
+        cin >> znak;
+        czy_znak_jest_litera(znak);
+    }
+}
+
+void dostepne_litery_aktualizacja(void) {
+    for (int i = 0; i < 26; ++i) {
+        if (alfabet[i] == znak) {
+            alfabet[i] = ' ';
+        }
+
     }
 }
