@@ -1,6 +1,17 @@
 
 #include "wszystko.h"
 #define HS 20
+string wisielec[50];
+char alfabet [26];
+char znak;
+string hasla[HS];
+void dostepne_litery ();
+void wczytanie_wisielca ();
+void czy_znak_jest_litera (char);
+void dostepne_litery_aktualizacja();
+void wyswietlenie_liter();
+void mala_litera_na_duza();
+void wczytanie_hasel(string);
 int checkGuess (char zgad_litera, string ukryte_haslo, string &zgadywane_haslo)
     {
 	int i;
@@ -75,40 +86,22 @@ int kat_losowanie()
     }
 
     //wczytanie haseł z pliku
-    fstream plik;
-    plik.open(nazwa_pliku);
-    string hasla[HS];
-    for (int i = 0; i < HS; i++)
-    {
-        plik >> hasla[i];
-    }
-    plik.close();
+    wczytanie_hasel(nazwa_pliku);
 
 
-    //wczytanie kolejnych etapów wisielca
-    plik.open("rysowanie_wisielca.txt",ios::in);
-    string wisielec[50];
-    for (int i = 0; i < 50; i++)
-    {
-        getline(plik,wisielec[i]);
-    }
-    plik.close();
+    wczytanie_wisielca();
 
     //losowaie hasła
     int rand_haslo = rand() % HS;
     string haslo = hasla[rand_haslo];
 
-    //cout << "Kategoria: " << kategoria << endl;
-    //cout << "Haslo: " << haslo << endl;
     
 	//tworzenie nowego stringa o długości hasła wypełnionego '_'
 	string hide_h(haslo.length(),'_');
 
     //stworzenie tabeli dostępnych liter
-    char alfabet [26];
-    for (int i = 0; i <=25; i++) {
-        alfabet[i] = i + 65;
-    }
+    dostepne_litery();
+
 
 	while (l_prob!=0)
 	{
@@ -117,14 +110,7 @@ int kat_losowanie()
 
 
         //wyświetlenie dostępnych liter
-        cout << "\nPozostale litery"<< endl;
-        for (int i = 0; i < 26; ++i) {
-            if (alfabet[i] != ' ')
-            {
-                cout << alfabet[i] << ", ";
-            }
-
-        }
+        wyswietlenie_liter();
 
         //wyświetlenie zgadywanego hasła
         cout << '\n';
@@ -133,20 +119,15 @@ int kat_losowanie()
         }
 
         //wczytanie litery
-        char znak;
-		cout << "\nzgadnij litere: ";
+        cout << "\nzgadnij litere: ";
 		cin >> znak;
 
-        //sprawdzanie czy użytkownik wprowadził liczbę
-        while (znak > 122 || znak < 65 || znak > 91 && znak < 96) {
-            cout << "Niepoprany znak, to nie jest litera\nWprowadz jeszcze raz" << endl;
-            cin >> znak;
-        }
+        //sprawdzanie czy użytkownik wprowadził litera
+        czy_znak_jest_litera(znak);
+
 
         //zamiana małych liter na duże
-        if (znak >= 96) {
-            znak -= 32;
-        }
+        mala_litera_na_duza();
 
         //funkcja sprawdzająca czy wprowadzona litera znajduje się w haśle
 		if (checkGuess(znak, haslo, hide_h)==0)
@@ -160,13 +141,7 @@ int kat_losowanie()
 		}
 
         //usunięcię wykorzystanych liter z dostępnych liter
-        for (int i = 0; i < 26; ++i) {
-            if (alfabet[i] == znak)
-            {
-                alfabet[i] = ' ';
-            }
-
-        }
+        dostepne_litery_aktualizacja();
 
         //wyświetlenie wisielca
         if(l_prob < 10)
@@ -202,4 +177,63 @@ int kat_losowanie()
     }
 
     return 0;
+}
+
+
+
+void wczytanie_wisielca (){
+    fstream plik;
+    plik.open("rysowanie_wisielca.txt", ios::in);
+    for (int i = 0; i < 50; i++)
+    {
+        getline(plik, wisielec[i]);
+    }
+    plik.close();
+}
+
+void dostepne_litery () {
+    for (int i = 0; i <=25; i++) {
+        alfabet[i] = i + 65;
+    }
+}
+
+
+void czy_znak_jest_litera (char znak1) {
+    if (znak1 > 122 || znak1 < 65 || znak1 > 91 && znak1 < 96) {
+        cout << "Niepoprany znak, to nie jest litera\nWprowadz jeszcze raz" << endl;
+        cin >> znak;
+        czy_znak_jest_litera(znak);
+    }
+}
+
+void dostepne_litery_aktualizacja() {
+    for (int i = 0; i < 26; ++i) {
+        if (alfabet[i] == znak) {
+            alfabet[i] = ' ';
+        }
+
+    }
+}
+void wyswietlenie_liter(){
+    cout << "\nPozostale litery"<< endl;
+    for (int i = 0; i < 26; ++i) {
+        if (alfabet[i] != ' ')
+        {
+        cout << alfabet[i] << ", ";
+        }
+    }
+}
+void mala_litera_na_duza(){
+    if (znak >= 96) {
+    znak -= 32;
+    }
+}
+
+void wczytanie_hasel(string nazwa_pliku) {
+    fstream plik;
+    plik.open(nazwa_pliku);
+    for (int i = 0; i < HS; i++) {
+        plik >> hasla[i];
+    }
+    plik.close();
 }
