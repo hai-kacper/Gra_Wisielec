@@ -1,6 +1,10 @@
 
 #include "wszystko.h"
 #define HS 20
+string wisielec[50];
+char alfabet [26];
+void dostepne_litery (void);
+void wczytanie_wisielca (void);
 int checkGuess (char zgad_litera, string ukryte_haslo, string &zgadywane_haslo)
     {
 	int i;
@@ -85,30 +89,19 @@ int kat_losowanie()
     plik.close();
 
 
-    //wczytanie kolejnych etapów wisielca
-    plik.open("rysowanie_wisielca.txt",ios::in);
-    string wisielec[50];
-    for (int i = 0; i < 50; i++)
-    {
-        getline(plik,wisielec[i]);
-    }
-    plik.close();
+    wczytanie_wisielca();
 
     //losowaie hasła
     int rand_haslo = rand() % HS;
     string haslo = hasla[rand_haslo];
 
-    //cout << "Kategoria: " << kategoria << endl;
-    //cout << "Haslo: " << haslo << endl;
     
 	//tworzenie nowego stringa o długości hasła wypełnionego '_'
 	string hide_h(haslo.length(),'_');
 
     //stworzenie tabeli dostępnych liter
-    char alfabet [26];
-    for (int i = 0; i <=25; i++) {
-        alfabet[i] = i + 65;
-    }
+    dostepne_litery();
+
 
 	while (l_prob!=0)
 	{
@@ -202,4 +195,21 @@ int kat_losowanie()
     }
 
     return 0;
+}
+
+void wczytanie_wisielca (void){
+    fstream plik;
+    plik.open("rysowanie_wisielca.txt", ios::in);
+    for (int i = 0; i < 50; i++)
+    {
+        getline(plik, wisielec[i]);
+    }
+    plik.close();
+}
+
+void dostepne_litery (void) {
+    ;
+    for (int i = 0; i <=25; i++) {
+        alfabet[i] = i + 65;
+    }
 }
