@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD 14)
 include_directories(wisielec)
 
 add_executable(Gra_Wisielec
-        wisielec/kat_losowanie.cpp
+        wisielec/gra.cpp
         wisielec/main.cpp
         wisielec/menu.cpp
         wisielec/wszystko.h)
