@@ -31,7 +31,7 @@ int checkGuess (char zgad_litera, string ukryte_haslo, string &zgadywane_haslo)
 	}
 	return matches;
     }
-int kat_losowanie()
+int gra()
 {
     int l_prob = 10;
 
@@ -173,7 +173,7 @@ int kat_losowanie()
     cin >> odp;
     if(odp == 't' || odp == 'T')
     {
-        kat_losowanie();
+        gra();
     }
 
     return 0;
