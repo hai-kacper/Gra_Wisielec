@@ -179,8 +179,6 @@ int gra()
     return 0;
 }
 
-
-
 void wczytanie_wisielca (){
     fstream plik;
     plik.open("rysowanie_wisielca.txt", ios::in);
