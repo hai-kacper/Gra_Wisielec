@@ -1,5 +1,6 @@
 
 #include "wszystko.h"
+#include <Windows.h>
 #define HS 20
 string wisielec[50];
 char alfabet [26];
@@ -33,6 +34,7 @@ int checkGuess (char zgad_litera, string ukryte_haslo, string &zgadywane_haslo)
     }
 int gra()
 {
+    system("cls");
     int l_prob = 10;
 
     //losowanie kategorii
@@ -106,7 +108,7 @@ int gra()
 	while (l_prob!=0)
 	{
         cout << "Kategoria: " << kategoria << endl;
-        cout << "Haslo: " << haslo << endl;
+        //cout << "Haslo: " << haslo << endl;
 
 
         //wyświetlenie dostępnych liter
@@ -119,8 +121,9 @@ int gra()
         }
 
         //wczytanie litery
-        cout << "\nzgadnij litere: ";
+        cout << "\nZgadnij litere: ";
 		cin >> znak;
+        system("cls");
 
         //sprawdzanie czy użytkownik wprowadził litera
         czy_znak_jest_litera(znak);
@@ -132,12 +135,12 @@ int gra()
         //funkcja sprawdzająca czy wprowadzona litera znajduje się w haśle
 		if (checkGuess(znak, haslo, hide_h)==0)
 		{
-		    cout<< "zla litera"<<endl;
+		    cout<<znak<< " to niepoprawna litera!"<<endl;
 			l_prob -= 1;
 		}
 		else
 		{
-			cout<<"dobra litera"<<endl;
+			cout<<znak<<" to poprawna litera!"<<endl;
 		}
 
         //usunięcię wykorzystanych liter z dostępnych liter
@@ -156,15 +159,15 @@ int gra()
         //sprawdzenie czy użytkownik zgadł hasło
 		if (haslo==hide_h)
 		{
-            cout<< "zgadles haslo!";
-			cout << "\n haslo : " << haslo << endl;
+            cout<< "Zgadles haslo!";
+			cout << "\n haslo: " << haslo << endl;
             break;
 		}
 	}
 	if(l_prob == 0)
 	{
 		cout << "Nie zgadles hasla"<<endl;
-		cout << "haslo : " << haslo << endl;
+		cout << "haslo: " << haslo << endl;
 	}
 
 
@@ -175,7 +178,8 @@ int gra()
     {
         gra();
     }
-
+    cout << "Dziekujemy za gre" << endl;
+    Sleep(1000);
     return 0;
 }
 

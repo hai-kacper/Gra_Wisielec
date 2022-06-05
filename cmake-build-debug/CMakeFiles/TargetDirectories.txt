@@ -1,0 +1,3 @@
+C:/Users/dorot/Desktop/Uczelnia/Gra_Wisielec/cmake-build-debug/CMakeFiles/Gra_Wisielec.dir
+C:/Users/dorot/Desktop/Uczelnia/Gra_Wisielec/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/dorot/Desktop/Uczelnia/Gra_Wisielec/cmake-build-debug/CMakeFiles/rebuild_cache.dir
