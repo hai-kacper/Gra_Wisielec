@@ -15,7 +15,7 @@ void menu()
     case 1:
         cout << "Start gry" << endl;
    //
-    kat_losowanie();
+    gra();
         break;
 
     case 2:

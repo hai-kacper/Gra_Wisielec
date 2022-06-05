@@ -32,7 +32,7 @@ int checkGuess (char zgad_litera, string ukryte_haslo, string &zgadywane_haslo)
 	}
 	return matches;
     }
-int kat_losowanie()
+int gra()
 {
     system("cls");
     int l_prob = 10;
@@ -176,14 +176,12 @@ int kat_losowanie()
     cin >> odp;
     if(odp == 't' || odp == 'T')
     {
-        kat_losowanie();
+        gra();
     }
     cout << "Dziekujemy za gre" << endl;
     Sleep(1000);
     return 0;
 }
-
-
 
 void wczytanie_wisielca (){
     fstream plik;
