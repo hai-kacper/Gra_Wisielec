@@ -1,9 +1,0 @@
-{
-    "files.associations": {
-        "xlocale": "cpp",
-        "xlocinfo": "cpp",
-        "xstring": "cpp",
-        "iostream": "cpp",
-        "iosfwd": "cpp"
-    }
-}
